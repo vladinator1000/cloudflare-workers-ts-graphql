@@ -7,8 +7,8 @@ module.exports = {
     filename: 'worker.js',
     path: path.join(__dirname, 'dist'),
   },
+  mode: 'production',
   devtool: 'cheap-module-source-map',
-  mode: 'development',
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
   },

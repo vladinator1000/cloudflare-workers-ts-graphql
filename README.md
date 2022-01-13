@@ -6,6 +6,10 @@ This template is meant to be used with [Wrangler](https://github.com/cloudflare/
 wrangler dev
 ```
 
+### 👀 Overview
+
+The template uses [Benzene](https://benzene.vercel.app/) to handle GraphQL requests. It's a fast and minimal (4kB) and agnostic GraphQL library.
+
 ### 🧪 Testing
 
 This template comes with jest tests which simply test that the request handler can handle each request method. `npm test` will run your tests.
