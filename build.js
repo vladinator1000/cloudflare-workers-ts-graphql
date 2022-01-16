@@ -7,6 +7,7 @@ async function buildWorker() {
       bundle: true,
       sourcemap: true,
       metafile: true,
+      // Uncomment this to reduce bundle size
       // minify: true,
       treeShaking: true,
       format: 'esm',

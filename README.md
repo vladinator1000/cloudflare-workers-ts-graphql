@@ -6,9 +6,11 @@ This template is meant to be used with [Wrangler](https://github.com/cloudflare/
 wrangler dev
 ```
 
-### 👀 Overview
+### Overview
 
-The template uses [Benzene](https://benzene.vercel.app/) to handle GraphQL requests. It's a fast and minimal (4kB) and agnostic GraphQL library.
+- 🔥 [Benzene](https://benzene.vercel.app/) for GraphQL requests. (fast, minimal (4kB) and runtime-agnostic)
+- 🔨 [esbuild](https://esbuild.github.io/) for fast builds, [build.js](./build.js)
+- 🔎 [TypeScript](https://www.typescriptlang.org/) support
 
 ### 🧪 Testing
 
