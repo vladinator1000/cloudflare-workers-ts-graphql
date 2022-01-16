@@ -2,8 +2,6 @@ import { handler as handleGql } from './graphql'
 import { handleOptions } from './cors'
 
 function handleFetch(request: Request): Response | Promise<Response> {
-  console.log(request.url)
-
   if (request.method === 'OPTIONS') {
     return handleOptions(request)
   } else if (['GET', 'POST'].includes(request.method)) {

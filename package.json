@@ -2,9 +2,9 @@
   "name": "worker-typescript-template",
   "version": "1.0.0",
   "description": "Cloudflare worker TypeScript template",
-  "main": "dist/worker.js",
+  "main": "dist/index.mjs",
   "scripts": {
-    "build": "webpack",
+    "build": "node build.js",
     "format": "prettier --write  '*.{json,js}' 'src/**/*.{js,ts}' 'test/**/*.{js,ts}'",
     "lint": "eslint --max-warnings=0 src && prettier --check '*.{json,js}' 'src/**/*.{js,ts}' 'test/**/*.{js,ts}'",
     "test": "jest --config jestconfig.json --verbose"
@@ -21,7 +21,6 @@
   "dependencies": {
     "@benzene/http": "^0.4.0",
     "@graphql-tools/schema": "^8.3.1",
-    "buffer": "^6.0.3",
     "graphql": "16.2.0"
   },
   "devDependencies": {
@@ -30,6 +29,7 @@
     "@types/service-worker-mock": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
+    "esbuild": "^0.14.11",
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-config-typescript": "^3.0.0",
@@ -37,9 +37,6 @@
     "prettier": "^2.3.0",
     "service-worker-mock": "^2.0.5",
     "ts-jest": "^27.0.1",
-    "ts-loader": "^9.2.2",
-    "typescript": "^4.3.2",
-    "webpack": "5.65.0",
-    "webpack-cli": "^4.7.0"
+    "typescript": "^4.3.2"
   }
 }

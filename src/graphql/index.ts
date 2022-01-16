@@ -17,7 +17,7 @@ const typeDefs = `
 const resolvers = {
   Query: {
     hello() {
-      return 'Hello'
+      return 'Hello, world!'
     },
   },
 }
