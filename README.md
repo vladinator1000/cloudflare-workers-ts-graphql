@@ -1,3 +1,5 @@
+Everything you need to have a functional back end with Cloudflare Workers.
+
 ## 🔋 Getting Started
 
 Prerequisites:
