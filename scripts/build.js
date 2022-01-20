@@ -1,5 +1,9 @@
 const path = require('path')
 const { build, analyzeMetafile } = require('esbuild')
+const alias = require('esbuild-plugin-alias')
+const {
+  NodeModulesPolyfillPlugin,
+} = require('@esbuild-plugins/node-modules-polyfill')
 
 async function buildWorker() {
   try {
@@ -15,7 +19,13 @@ async function buildWorker() {
       entryPoints: [path.join(__dirname, '../src', 'index.ts')],
       outdir: path.join(__dirname, '../dist'),
       outExtension: { '.js': '.mjs' },
-      plugins: [],
+      plugins: [
+        NodeModulesPolyfillPlugin(),
+        alias({
+          '@prisma/client': require.resolve('@prisma/client'),
+        }),
+      ],
+      inject: ['./processEnvShim.js'],
     })
 
     const bundleSizeAnalysis = await analyzeMetafile(result.metafile, {

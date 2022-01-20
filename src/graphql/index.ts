@@ -5,9 +5,9 @@ import {
   makeCompileQuery,
 } from '@benzene/http'
 import { makeExecutableSchema } from '@graphql-tools/schema'
+import { PrismaClient } from '@prisma/client'
 import { config } from '../config'
 import { setCorsHeaders } from '../cors'
-import { prisma } from '../prisma'
 
 const typeDefs = `
   type Query {
@@ -32,7 +32,7 @@ const benzene = new Benzene({
   schema,
   compileQuery: makeCompileQuery(),
   contextFn: () => ({
-    prisma,
+    prisma: new PrismaClient(),
   }),
 })
 const graphqlHandler = makeHandler(benzene)

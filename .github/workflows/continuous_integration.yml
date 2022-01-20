@@ -1,22 +1,16 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Continuous Integration
+name: Continuous integration
 
 on:
   pull_request:
     branches: [main]
-    paths-ignore:
-      - 'infrastructure/**'
-      - 'commands/**'
 
 jobs:
   build_and_test:
     name: Build and test
     runs-on: ubuntu-latest
-
-    env:
-      DATABASE_URL: postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public
 
     strategy:
       matrix:
@@ -59,6 +53,8 @@ jobs:
 
       - name: Migrate database
         run: npm run migrate
+        env:
+          DATABASE_URL: postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public
 
       - name: 🧶 Generate code
         run: npm run codegen
