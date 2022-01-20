@@ -12,8 +12,8 @@ async function buildWorker() {
       treeShaking: true,
       format: 'esm',
       target: 'esnext',
-      entryPoints: [path.join(__dirname, 'src', 'index.ts')],
-      outdir: path.join(__dirname, 'dist'),
+      entryPoints: [path.join(__dirname, '../src', 'index.ts')],
+      outdir: path.join(__dirname, '../dist'),
       outExtension: { '.js': '.mjs' },
       plugins: [],
     })

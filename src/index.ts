@@ -1,5 +1,6 @@
 import { handler as handleGql } from './graphql'
 import { handleOptions } from './cors'
+import { config } from './config'
 
 function handleFetch(request: Request): Response | Promise<Response> {
   if (request.method === 'OPTIONS') {
@@ -18,7 +19,9 @@ addEventListener('fetch', async (event) => {
   try {
     event.respondWith(handleFetch(event.request))
   } catch (error: any) {
-    new Response(error.stack, {
+    const body = config.environment === 'development' ? error : 'Internal error'
+
+    return new Response(body, {
       status: 500,
     })
   }

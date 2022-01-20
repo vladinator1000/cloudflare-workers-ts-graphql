@@ -7,6 +7,7 @@ import {
 import { makeExecutableSchema } from '@graphql-tools/schema'
 import { config } from '../config'
 import { setCorsHeaders } from '../cors'
+import { prisma } from '../prisma'
 
 const typeDefs = `
   type Query {
@@ -27,7 +28,13 @@ const schema = makeExecutableSchema({
   resolvers,
 })
 
-const benzene = new Benzene({ schema, compileQuery: makeCompileQuery() })
+const benzene = new Benzene({
+  schema,
+  compileQuery: makeCompileQuery(),
+  contextFn: () => ({
+    prisma,
+  }),
+})
 const graphqlHandler = makeHandler(benzene)
 
 export async function handler(request: Request): Promise<Response> {
