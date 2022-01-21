@@ -13,6 +13,7 @@
     "db-migrate": "prisma migrate deploy",
     "db-migrate-dev": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate dev",
     "db-pull": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma db pull",
+    "db-reset": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate reset --force",
     "migrate-prod": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy",
     "codegen": "PRISMA_CLIENT_ENGINE_TYPE=dataproxy prisma generate",
     "prisma-studio": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma studio"
