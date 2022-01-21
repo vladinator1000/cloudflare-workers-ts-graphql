@@ -1,7 +1,7 @@
 -- CreateEnum
 CREATE TYPE "Level" AS ENUM ('Info', 'Warn', 'Error');
 
--- CreateTable
+-- CreateTabl
 CREATE TABLE "Log" (
     "id" SERIAL NOT NULL,
     "level" "Level" NOT NULL,
