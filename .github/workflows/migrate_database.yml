@@ -34,4 +34,4 @@ jobs:
         run: npm install
 
       - name: Migrate production database
-        run: DATABASE_URL=${{ secrets.MIGRATE_DATABASE_URL }} npm run migrate
+        run: DATABASE_URL=${{ secrets.MIGRATE_DATABASE_URL }} npm run db-migrate
