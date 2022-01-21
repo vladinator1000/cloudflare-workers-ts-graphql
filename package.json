@@ -10,8 +10,9 @@
     "lint": "eslint --max-warnings=0 src && prettier --check '*.{json,js}' 'src/**/*.{js,ts}' 'test/**/*.{js,ts}'",
     "test": "jest --config jestconfig.json --verbose",
     "ts": "tsc --noEmit",
-    "migrate": "prisma migrate deploy",
-    "codegen": "PRISMA_CLIENT_ENGINE_TYPE=dataproxy npx prisma generate"
+    "migrate": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy",
+    "codegen": "PRISMA_CLIENT_ENGINE_TYPE=dataproxy prisma generate",
+    "prisma-studio": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma studio"
   },
   "prisma": {
     "schema": "src/prisma/schema.prisma"
@@ -33,7 +34,6 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "3.3.0",
-    "@esbuild-plugins/node-modules-polyfill": "^0.1.4",
     "@types/jest": "^26.0.23",
     "@types/service-worker-mock": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^4.16.1",

@@ -51,7 +51,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Migrate database
+      - name: Migrate dev database
         run: npm run migrate
         env:
           DATABASE_URL: postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public

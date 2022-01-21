@@ -12,6 +12,7 @@ import { setCorsHeaders } from '../cors'
 const typeDefs = `
   type Query {
     hello: String
+    logs: [String]
   }
 `
 
@@ -19,6 +20,10 @@ const resolvers = {
   Query: {
     hello() {
       return 'Hello, world!'
+    },
+    logs(_: any, __: any, context: any) {
+      const prisma: PrismaClient = context.prisma
+      return prisma.log.findMany().then((logs) => logs.map((log) => log.level))
     },
   },
 }
