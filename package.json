@@ -10,7 +10,7 @@
     "lint": "eslint --max-warnings=0 src && prettier --check '*.{json,js}' 'src/**/*.{js,ts}' 'test/**/*.{js,ts}'",
     "test": "jest --config jestconfig.json --verbose",
     "ts": "tsc --noEmit",
-    "migrate": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy",
+    "migrate": "prisma migrate deploy",
     "codegen": "PRISMA_CLIENT_ENGINE_TYPE=dataproxy prisma generate",
     "prisma-studio": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma studio"
   },
