@@ -11,6 +11,7 @@
     "test": "jest --config jestconfig.json --verbose",
     "ts": "tsc --noEmit",
     "migrate": "prisma migrate deploy",
+    "migrate-prod": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy",
     "codegen": "PRISMA_CLIENT_ENGINE_TYPE=dataproxy prisma generate",
     "prisma-studio": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma studio"
   },
