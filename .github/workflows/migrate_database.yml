@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'src/prisma/migrations'
+      - 'src/prisma/migrations/**'
 
 jobs:
   migrate_production_database:
