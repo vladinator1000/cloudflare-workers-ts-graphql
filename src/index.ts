@@ -19,7 +19,8 @@ addEventListener('fetch', async (event) => {
   try {
     event.respondWith(handleFetch(event.request))
   } catch (error: any) {
-    const body = config.environment === 'development' ? error : 'Internal error'
+    // const body = config.environment === 'development' ? error : 'Internal error'
+    const body = error
 
     return new Response(body, {
       status: 500,
