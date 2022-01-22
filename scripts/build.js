@@ -16,17 +16,12 @@ async function buildWorker() {
       entryPoints: [path.join(__dirname, '../src', 'index.ts')],
       outdir: path.join(__dirname, '../dist'),
       outExtension: { '.js': '.mjs' },
-      define: {
-        'process.env.NODE_ENV': `"${process.env.NODE_ENV ?? 'development'}"`,
-        // need to stub this out or the runtime will throw an exception
-        'process.env.DATABASE_URL': `""`,
-      },
       plugins: [
         alias({
           '@prisma/client': require.resolve('@prisma/client'),
         }),
       ],
-      // inject: ['./processEnvShim.js'],
+      inject: ['./processShim.js'],
     })
 
     const bundleSizeAnalysis = await analyzeMetafile(result.metafile, {

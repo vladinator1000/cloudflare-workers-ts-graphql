@@ -1,7 +1,7 @@
-name = "ts-gql"
+name = "cloudflare-workers-ts-graphql"
 type = "javascript"
 zone_id = ""
-account_id = ""
+account_id = "4b53615f0f1c00b8a6c8b3d694848674"
 route = ""
 workers_dev = true
 compatibility_date = "2022-01-11"
