@@ -40,10 +40,7 @@ jobs:
       - name: 🔎 Check types
         run: npm run ts
 
-      - name: 🔨 Build
-        run: npm run build
-
-      - name: Deploy
+      - name: 🔨📦 Build and deploy
         uses: cloudflare/wrangler-action@1.3.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
