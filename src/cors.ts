@@ -3,7 +3,7 @@ import { config } from './config'
 const allowedOrigins = [config.clientUrl, 'https://studio.apollographql.com']
 
 export function setCorsHeaders(request: Request, response: Response): void {
-  const origin = request.headers.get('origin')
+  const origin = request.headers.get('Origin')
 
   if (origin && allowedOrigins.includes(origin)) {
     response.headers.append('Access-Control-Allow-Origin', origin)
