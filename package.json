@@ -15,7 +15,7 @@
     "db-pull": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma db pull",
     "db-reset": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate reset --force",
     "migrate-prod": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma migrate deploy",
-    "codegen": "PRISMA_CLIENT_ENGINE_TYPE=dataproxy prisma generate",
+    "codegen": "PRISMA_CLIENT_ENGINE_TYPE=dataproxy prisma generate && graphql-codegen",
     "prisma-studio": "DATABASE_URL=\"$MIGRATE_DATABASE_URL\" prisma studio"
   },
   "prisma": {
@@ -32,17 +32,24 @@
   },
   "dependencies": {
     "@benzene/http": "^0.4.0",
+    "@graphql-tools/merge": "^8.2.1",
     "@graphql-tools/schema": "^8.3.1",
     "@prisma/client": "^3.8.1",
-    "graphql": "16.2.0"
+    "graphql": "16.2.0",
+    "graphql-tag": "^2.12.6"
   },
   "devDependencies": {
+    "@graphql-codegen/add": "3.1.1",
+    "@graphql-codegen/cli": "2.4.0",
+    "@graphql-codegen/schema-ast": "2.4.1",
+    "@graphql-codegen/typescript": "2.4.2",
+    "@graphql-codegen/typescript-resolvers": "2.4.3",
     "@cloudflare/workers-types": "3.3.0",
     "@types/jest": "^26.0.23",
     "@types/service-worker-mock": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
-    "esbuild": "^0.14.11",
+    "esbuild": "^0.14.13",
     "esbuild-plugin-alias": "^0.2.1",
     "eslint": "^7.21.0",
     "eslint-config-prettier": "^8.1.0",

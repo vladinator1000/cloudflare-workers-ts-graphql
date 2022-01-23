@@ -1,0 +1,19 @@
+# https://graphql-code-generator.com
+overwrite: true
+schema: src/graphql/**/*.schema.ts
+generates:
+  ./src/graphql/generated.types.ts:
+    plugins:
+      - add:
+          content: '/* eslint-disable */'
+      - typescript
+      - typescript-resolvers
+    config:
+      contextType: ./context.types#GraphqlContext
+      useImplementingTypes: true
+      noSchemaStitching: true
+      makeResolverTypeCallable: true
+
+  ./src/graphql/generated.schema.graphql:
+    plugins:
+      - schema-ast

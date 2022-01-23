@@ -6,35 +6,17 @@ import {
 } from '@benzene/http'
 import { makeExecutableSchema } from '@graphql-tools/schema'
 import { PrismaClient } from '@prisma/client'
+import { mergeTypeDefs, mergeResolvers } from '@graphql-tools/merge'
 import { config } from '../config'
 import { setCorsHeaders } from '../cors'
 
-const typeDefs = `
-  type Query {
-    hello: String
-  
-    """
-    Asks Postgres what is 1 + 1
-    """
-    testDbConnection: Int
-  }
-`
+import { helloSchema } from './hello/hello.schema'
+import { logSchema } from './log/log.schema'
+import { logResolvers } from './log/log.resolvers'
+import { helloResolvers } from './hello/hello.resolvers'
 
-const resolvers = {
-  Query: {
-    hello() {
-      return 'Hello, world!'
-    },
-
-    async testDbConnection(_: any, __: any, context: any) {
-      const prisma: PrismaClient = context.prisma
-      const result: any = await prisma.$queryRaw`SELECT 1 + 1`
-
-      return result[0]['?column?']
-    },
-  },
-}
-
+const typeDefs = mergeTypeDefs([helloSchema, logSchema])
+const resolvers = mergeResolvers([helloResolvers, logResolvers])
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers,

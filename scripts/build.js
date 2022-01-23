@@ -8,7 +8,7 @@ async function buildWorker() {
       bundle: true,
       sourcemap: true,
       metafile: true,
-      // Uncomment this to reduce bundle size
+      // Uncomment to reduce bundle size
       // minify: true,
       treeShaking: true,
       format: 'esm',
@@ -24,10 +24,11 @@ async function buildWorker() {
       inject: ['./processShim.js'],
     })
 
-    const bundleSizeAnalysis = await analyzeMetafile(result.metafile, {
-      color: true,
-    })
-    console.log(bundleSizeAnalysis)
+    // Uncomment to see what takes up space in the bundle
+    // const bundleSizeAnalysis = await analyzeMetafile(result.metafile, {
+    //   color: true,
+    // })
+    // console.log(bundleSizeAnalysis)
   } catch (err) {
     console.error(err)
     process.exitCode = 1
