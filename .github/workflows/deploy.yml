@@ -34,8 +34,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Create env file for Prisma
+        run: |
+          touch .env
+          echo PRISMA_CLIENT_ENGINE_TYPE=dataproxy >> .env
+          echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
+          cat .env
+
       - name: 🧶 Generate code
-        run: DATABASE_URL=${{ secrets.DATABASE_URL }} npm run codegen
+        run: npm run codegen
 
       - name: 🔎 Check types
         run: npm run ts
