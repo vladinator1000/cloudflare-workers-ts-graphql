@@ -33,20 +33,24 @@ const benzene = new Benzene({
 const graphqlHandler = makeHandler(benzene)
 
 export const handleGraphql: Handler = async (request, response) => {
-  const headers: Record<string, string> = {}
-  request.headers.forEach((value, key) => (headers[key] = value))
-  const body = await request.body.text()
+  try {
+    const headers: Record<string, string> = {}
+    request.headers.forEach((value, key) => (headers[key] = value))
+    const body = await request.body.text()
 
-  const result = await graphqlHandler({
-    method: request.method,
-    headers,
-    body: parseGraphQLBody(body, headers['content-type']),
-    query: request.params,
-  })
+    const result = await graphqlHandler({
+      method: request.method,
+      headers,
+      body: parseGraphQLBody(body, headers['content-type']),
+      query: request.params,
+    })
 
-  response.send(
-    result.status,
-    JSON.stringify(result.payload),
-    result.headers as any,
-  )
+    response.send(
+      result.status,
+      JSON.stringify(result.payload),
+      result.headers as any,
+    )
+  } catch (error) {
+    console.error(error)
+  }
 }

@@ -6,10 +6,12 @@ import { config } from './config'
 
 const router = new Router()
 
+// Cross-origin resource sharing settings
 router.prepare = preflight({
-  origin: '*', // allow any `Origin` to connect
-  headers: ['Cache-Control', 'Content-Type', 'X-Count'],
-  methods: ['GET', 'HEAD', 'PUT', 'POST', 'DELETE'],
+  origin: '*', // allow any `Origin` to connect for now
+  credentials: true,
+  headers: ['Cache-Control', 'Content-Type', 'Authorization'],
+  methods: ['GET', 'HEAD', 'POST'],
 })
 
 router.add('GET', '/graphql', handleGraphql)
