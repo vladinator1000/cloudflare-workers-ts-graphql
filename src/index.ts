@@ -1,29 +1,21 @@
-import { handler as handleGql } from './graphql'
-import { handleOptions } from './cors'
+import { Router, listen } from 'worktop'
+import { preflight } from 'worktop/cors'
+
+import { handleGraphql } from './graphql'
 import { config } from './config'
 
-function handleFetch(request: Request): Response | Promise<Response> {
-  if (request.method === 'OPTIONS') {
-    return handleOptions(request)
-  } else if (['GET', 'POST'].includes(request.method)) {
-    return handleGql(request)
-  } else {
-    return new Response(null, {
-      status: 405,
-      statusText: 'Method Not Allowed',
-    })
-  }
-}
+const router = new Router()
 
-addEventListener('fetch', async (event) => {
-  try {
-    event.respondWith(handleFetch(event.request))
-  } catch (error: any) {
-    // const body = config.environment === 'development' ? error : 'Internal error'
-    const body = error
-
-    return new Response(body, {
-      status: 500,
-    })
-  }
+router.prepare = preflight({
+  origin: '*', // allow any `Origin` to connect
+  headers: ['Cache-Control', 'Content-Type', 'X-Count'],
+  methods: ['GET', 'HEAD', 'PUT', 'POST', 'DELETE'],
 })
+
+router.add('GET', '/graphql', handleGraphql)
+router.add('POST', '/graphql', handleGraphql)
+router.add('GET', '/', () => {
+  return Response.redirect(config.gqlExplorerUrl, 301)
+})
+
+listen(router.run)

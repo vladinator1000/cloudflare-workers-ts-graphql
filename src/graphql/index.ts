@@ -14,6 +14,7 @@ import { helloSchema } from './hello/hello.schema'
 import { logSchema } from './log/log.schema'
 import { logResolvers } from './log/log.resolvers'
 import { helloResolvers } from './hello/hello.resolvers'
+import { Handler } from 'worktop'
 
 const typeDefs = mergeTypeDefs([helloSchema, logSchema])
 const resolvers = mergeResolvers([helloResolvers, logResolvers])
@@ -31,27 +32,21 @@ const benzene = new Benzene({
 })
 const graphqlHandler = makeHandler(benzene)
 
-export async function handler(request: Request): Promise<Response> {
-  const url = new URL(request.url)
+export const handleGraphql: Handler = async (request, response) => {
+  const headers: Record<string, string> = {}
+  request.headers.forEach((value, key) => (headers[key] = value))
+  const body = await request.body.text()
 
-  if (url.pathname.startsWith('/graphql')) {
-    const headers = Object.fromEntries(request.headers)
-    const rawBody = await request.text()
-    const result = await graphqlHandler({
-      method: request.method,
-      headers,
-      body: parseGraphQLBody(rawBody, headers['content-type']),
-      query: Object.fromEntries(url.searchParams),
-    })
+  const result = await graphqlHandler({
+    method: request.method,
+    headers,
+    body: parseGraphQLBody(body, headers['content-type']),
+    query: request.params,
+  })
 
-    const response = new Response(JSON.stringify(result.payload), {
-      headers: new Headers(result.headers as any),
-      status: result.status,
-    })
-
-    setCorsHeaders(request, response)
-    return response
-  } else {
-    return Response.redirect(config.gqlExplorerUrl, 301)
-  }
+  response.send(
+    result.status,
+    JSON.stringify(result.payload),
+    result.headers as any,
+  )
 }

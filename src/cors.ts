@@ -1,8 +1,13 @@
+import { Handler } from 'worktop'
+import { ServerRequest } from 'worktop/request'
 import { config } from './config'
 
 const allowedOrigins = [config.clientUrl, 'https://studio.apollographql.com']
 
-export function setCorsHeaders(request: Request, response: Response): void {
+export function setCorsHeaders(
+  request: ServerRequest,
+  response: Response,
+): void {
   const origin = request.headers.get('Origin')
 
   if (origin && allowedOrigins.includes(origin)) {
@@ -18,7 +23,7 @@ export function setCorsHeaders(request: Request, response: Response): void {
   response.headers.append('X-Content-Type-Options', 'nosniff')
 }
 
-export function handleOptions(request: Request): Response {
+export const handleOptions: Handler = (request) => {
   if (
     request.headers.get('Origin') !== null &&
     request.headers.get('Access-Control-Request-Method') !== null &&
