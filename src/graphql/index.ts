@@ -52,5 +52,6 @@ export const handleGraphql: Handler = async (request, response) => {
     )
   } catch (error) {
     console.error(error)
+    response.send(500, error)
   }
 }
