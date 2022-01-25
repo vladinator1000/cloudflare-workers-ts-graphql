@@ -7,8 +7,6 @@ import {
 import { makeExecutableSchema } from '@graphql-tools/schema'
 import { PrismaClient } from '@prisma/client'
 import { mergeTypeDefs, mergeResolvers } from '@graphql-tools/merge'
-import { config } from '../config'
-import { setCorsHeaders } from '../cors'
 
 import { helloSchema } from './hello/hello.schema'
 import { logSchema } from './log/log.schema'
