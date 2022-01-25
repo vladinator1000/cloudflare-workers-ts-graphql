@@ -5,6 +5,9 @@ export const helloResolvers: Resolvers = {
     hello() {
       return 'Hello, world!'
     },
+    goodbye() {
+      return 'Goodbye, world!'
+    },
 
     async testDbConnection(_, __, { prisma }) {
       const result: any = await prisma.$queryRaw`SELECT 1 + 1`

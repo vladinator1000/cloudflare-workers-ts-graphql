@@ -31,6 +31,7 @@ export type Log = {
 
 export type Query = {
   __typename?: 'Query';
+  goodbye?: Maybe<Scalars['String']>;
   hello?: Maybe<Scalars['String']>;
   logs: Array<Log>;
   /** Asks Postgres what is 1 + 1 */
@@ -127,6 +128,7 @@ export type LogResolvers<ContextType = GraphqlContext, ParentType extends Resolv
 };
 
 export type QueryResolvers<ContextType = GraphqlContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  goodbye?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   hello?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   logs?: Resolver<Array<ResolversTypes['Log']>, ParentType, ContextType>;
   testDbConnection?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
