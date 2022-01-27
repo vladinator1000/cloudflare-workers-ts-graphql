@@ -15,9 +15,11 @@ import { helloResolvers } from './hello/hello.resolvers'
 import { Handler } from 'worktop'
 import { config } from '../config'
 import { createFetchClient } from 'prisma-proxy-fetch-client'
+import { userSchema } from './user/user.schema'
+import { userResolvers } from './user/user.resolvers'
 
-const typeDefs = mergeTypeDefs([helloSchema, logSchema])
-const resolvers = mergeResolvers([helloResolvers, logResolvers])
+const typeDefs = mergeTypeDefs([helloSchema, logSchema, userSchema])
+const resolvers = mergeResolvers([helloResolvers, logResolvers, userResolvers])
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers,

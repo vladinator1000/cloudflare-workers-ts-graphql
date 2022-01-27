@@ -18,4 +18,10 @@ type Query {
 
   """Asks Postgres what is 1 + 1"""
   testDbConnection: Int
+  users: [User!]!
+}
+
+type User {
+  id: Int!
+  name: String!
 }

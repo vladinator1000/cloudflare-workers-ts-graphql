@@ -21,3 +21,8 @@ enum Level {
   Error
   Critical
 }
+
+model User {
+  id   Int    @id @default(autoincrement())
+  name String
+}
