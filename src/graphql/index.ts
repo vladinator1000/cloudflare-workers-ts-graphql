@@ -29,6 +29,8 @@ const benzene = new Benzene({
   schema,
   compileQuery: makeCompileQuery(),
   contextFn: () => {
+    console.log({ env: config.environment })
+
     const prisma =
       config.environment === 'development'
         ? createFetchClient<PrismaClient>({ baseUrl: config.prismaDevProxyUrl })
