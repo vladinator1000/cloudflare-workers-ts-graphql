@@ -13,6 +13,8 @@ import { logSchema } from './log/log.schema'
 import { logResolvers } from './log/log.resolvers'
 import { helloResolvers } from './hello/hello.resolvers'
 import { Handler } from 'worktop'
+import { config } from '../config'
+import { createFetchClient } from 'prisma-proxy-fetch-client'
 
 const typeDefs = mergeTypeDefs([helloSchema, logSchema])
 const resolvers = mergeResolvers([helloResolvers, logResolvers])
@@ -24,9 +26,16 @@ const schema = makeExecutableSchema({
 const benzene = new Benzene({
   schema,
   compileQuery: makeCompileQuery(),
-  contextFn: () => ({
-    prisma: new PrismaClient(),
-  }),
+  contextFn: () => {
+    const prisma =
+      config.environment === 'development'
+        ? createFetchClient<PrismaClient>({ baseUrl: config.prismaDevProxyUrl })
+        : new PrismaClient()
+
+    return {
+      prisma,
+    }
+  },
 })
 const graphqlHandler = makeHandler(benzene)
 

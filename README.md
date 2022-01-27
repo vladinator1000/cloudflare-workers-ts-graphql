@@ -19,4 +19,4 @@ npm start
 - 🔥 [Benzene GraphQL](https://benzene.vercel.app/) fast, minimal (4kB) and runtime-agnostic GraphQL support
 - 🔨 [esbuild](https://esbuild.github.io/) for fast builds, configured in [scripts/build.js](./scripts/build.js)
 - 🔎 [TypeScript](https://www.typescriptlang.org/) support
-- 💾 [Prisma](https://www.prisma.io) database client support
+- 💾 [Prisma](https://www.prisma.io) database client support with a proxy that lets you talk to a local database

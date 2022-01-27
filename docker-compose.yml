@@ -11,5 +11,16 @@ services:
     ports:
       # Exposing this for external DB clients for your convenience
       - '5432:5432'
+  prisma-proxy:
+    build: 
+      dockerfile: prismaProxy.dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./:/prismaProxy
+    ports: 
+      - '3333:3333'
+    environment:
+      DATABASE_URL: "postgresql://johndoe:randompassword@db/mydb?schema=public"
 volumes:
   pgdata: {}

@@ -16,6 +16,10 @@ jobs:
       matrix:
         node-version: [17.x]
 
+    env:
+      ENVIRONMENT: 'development'
+      NODE_ENV: 'development'
+
     services:
       postgres:
         image: postgres

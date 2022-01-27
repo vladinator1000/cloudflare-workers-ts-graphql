@@ -10,10 +10,12 @@ jobs:
   migrate_production_database:
     name: Migrate production database
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [17.x]
+    env:
+      ENVIRONMENT: 'development'
+      NODE_ENV: 'development'
 
     steps:
       - uses: actions/checkout@v2

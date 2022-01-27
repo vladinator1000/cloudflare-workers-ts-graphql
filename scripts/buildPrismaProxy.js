@@ -1,5 +1,5 @@
 const path = require('path')
-const { build, analyzeMetafile } = require('esbuild')
+const { build } = require('esbuild')
 const alias = require('esbuild-plugin-alias')
 
 async function buildWorker() {
@@ -7,15 +7,11 @@ async function buildWorker() {
     const result = await build({
       bundle: true,
       sourcemap: true,
-      metafile: true,
-      // Uncomment to reduce bundle size
-      // minify: true,
+      platform: 'node',
       treeShaking: true,
-      format: 'esm',
       target: 'esnext',
-      entryPoints: [path.join(__dirname, '../src', 'index.ts')],
+      entryPoints: [path.join(__dirname, '../src', 'prismaDevProxy.ts')],
       outdir: path.join(__dirname, '../dist'),
-      outExtension: { '.js': '.mjs' },
       define: {
         ENVIRONMENT: process.env.ENVIRONMENT ?? '"development"',
       },
@@ -24,14 +20,7 @@ async function buildWorker() {
           '@prisma/client': require.resolve('@prisma/client'),
         }),
       ],
-      inject: ['./polyfills.js'],
     })
-
-    // Uncomment to see what takes up space in the bundle
-    // const bundleSizeAnalysis = await analyzeMetafile(result.metafile, {
-    //   color: true,
-    // })
-    // console.log(bundleSizeAnalysis)
   } catch (err) {
     console.error(err)
     process.exitCode = 1
