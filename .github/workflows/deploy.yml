@@ -43,6 +43,8 @@ jobs:
 
       - name: 🧶 Generate code
         run: npm run codegen
+        env:
+          ENVIRONMENT: 'production'
 
       - name: 🔎 Check types
         run: npm run ts
@@ -51,3 +53,5 @@ jobs:
         uses: cloudflare/wrangler-action@1.3.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        env:
+          ENVIRONMENT: 'production'
