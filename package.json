@@ -5,9 +5,9 @@
   "main": "dist/index.mjs",
   "scripts": {
     "start": "miniflare --build-command \"npm run codegen && npm run build\" --watch",
-    "prisma-proxy": "npm run db-reset && npm run codegen-dev && npm run build-prisma-proxy && node ./dist/prismaDevProxy.js",
-    "codegen": "PRISMA_CLIENT_ENGINE_TYPE=dataproxy prisma generate && graphql-codegen",
-    "codegen-dev": "prisma generate && graphql-codegen",
+    "prisma-proxy": "npm run db-reset && npm run codegen-dev-proxy && npm run build-prisma-proxy && node ./dist/prismaDevProxy.js",
+    "codegen": "PRISMA_CLIENT_ENGINE_TYPE=dataproxy prisma generate && npx graphql-codegen",
+    "codegen-dev-proxy": "prisma generate && npx graphql-codegen",
     "build": "node ./scripts/build.js",
     "build-prisma-proxy": "node ./scripts/buildPrismaProxy.js",
     "format": "prettier --write  '*.{json,js}' 'src/**/*.{js,ts}' 'test/**/*.{js,ts}'",
