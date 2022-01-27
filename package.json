@@ -6,10 +6,11 @@
   "scripts": {
     "start": "miniflare --build-command \"npm run codegen && npm run build\" --watch",
     "prisma-proxy": "npm run db-reset && npm run codegen-dev-proxy && npm run build-prisma-proxy && node ./dist/prismaDevProxy.js",
-    "codegen": "PRISMA_CLIENT_ENGINE_TYPE=dataproxy prisma generate && npx graphql-codegen",
-    "codegen-dev-proxy": "prisma generate && npx graphql-codegen",
+    "codegen": "PRISMA_CLIENT_ENGINE_TYPE=dataproxy prisma generate && graphql-codegen",
+    "codegen-dev-proxy": "prisma generate && graphql-codegen",
     "build": "node ./scripts/build.js",
     "build-prisma-proxy": "node ./scripts/buildPrismaProxy.js",
+    "build-production": "ENVIRONMENT=production npm run build",
     "format": "prettier --write  '*.{json,js}' 'src/**/*.{js,ts}' 'test/**/*.{js,ts}'",
     "lint": "eslint --max-warnings=0 src && prettier --check '*.{json,js}' 'src/**/*.{js,ts}' 'test/**/*.{js,ts}'",
     "test": "jest --config jestconfig.json --verbose",
