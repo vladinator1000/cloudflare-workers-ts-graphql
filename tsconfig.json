@@ -15,7 +15,7 @@
       "@cloudflare/workers-types",
       "@types/jest",
       "@types/service-worker-mock",
-      "src/global.d.ts"
+      "./src/global.d.ts"
     ]
   },
   "include": ["src"],
