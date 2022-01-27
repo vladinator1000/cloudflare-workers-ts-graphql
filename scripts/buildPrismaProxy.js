@@ -13,7 +13,7 @@ async function buildWorker() {
       entryPoints: [path.join(__dirname, '../src', 'prismaDevProxy.ts')],
       outdir: path.join(__dirname, '../dist'),
       define: {
-        ENVIRONMENT: process.env.ENVIRONMENT ?? '"development"',
+        ENVIRONMENT: process.env.ENVIRONMENT || '"development"',
       },
       plugins: [
         alias({

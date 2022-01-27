@@ -17,7 +17,7 @@ async function buildWorker() {
       outdir: path.join(__dirname, '../dist'),
       outExtension: { '.js': '.mjs' },
       define: {
-        ENVIRONMENT: process.env.ENVIRONMENT ?? '"development"',
+        ENVIRONMENT: process.env.ENVIRONMENT || '"development"',
       },
       plugins: [
         alias({
