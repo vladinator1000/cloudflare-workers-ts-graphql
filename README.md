@@ -18,7 +18,7 @@ A real-world worker template with a local development experience that lets you w
 docker compose up
 ```
 
-## Prerequisites for the GitHub actions to work in production
+## Prerequisites for production
 
 1. Create a new repo based on the template
 1. Get a database connection string from a database service provider, or host your own. It should look something like this `postgresql://johndoe:password@host:port/mydb?schema=public`
