@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  prisma:
+    build: 
+      dockerfile: prismaProxy.dockerfile
+    depends_on:
+      - db
+    ports: 
+      - '3333:3333'
+    environment:
+      DATABASE_URL: "postgresql://johndoe:randompassword@db/mydb?schema=public"
+  

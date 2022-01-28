@@ -2,6 +2,6 @@
 export const config = {
   environment: ENVIRONMENT ?? 'development',
   clientUrl: '',
-  prismaDevProxyUrl: 'http://localhost:3333',
+  prismaDevProxyUrl: 'http://prisma:3333',
   gqlExplorerUrl: 'https://studio.apollographql.com/sandbox/explorer',
 }

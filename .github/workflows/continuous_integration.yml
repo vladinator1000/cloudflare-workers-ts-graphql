@@ -17,7 +17,7 @@ jobs:
         node-version: [17.x]
 
     services:
-      postgres:
+      db:
         image: postgres
         env:
           POSTGRES_DB: mydb
@@ -32,7 +32,6 @@ jobs:
         ports:
           # Maps tcp port 5432 on service container to the host
           - 5432:5432
-
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -50,6 +49,9 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Start Prisma proxy
+        run: docker compose up -f docker-compose.test.yml -d
 
       - name: Migrate dev database
         run: npm run db-migrate

@@ -1,6 +1,7 @@
 const path = require('path')
 const { build } = require('esbuild')
 const alias = require('esbuild-plugin-alias')
+const { wrapWithQuotes } = require('./buildUtils')
 
 async function buildWorker() {
   try {
