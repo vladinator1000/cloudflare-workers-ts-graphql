@@ -3,6 +3,7 @@ const { build, analyzeMetafile } = require('esbuild')
 const alias = require('esbuild-plugin-alias')
 
 async function buildWorker() {
+  console.log({ env: process.env.ENVIRONMENT })
   try {
     const result = await build({
       bundle: true,
