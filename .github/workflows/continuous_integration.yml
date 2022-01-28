@@ -52,11 +52,11 @@ jobs:
 
       - name: Start Prisma proxy and migrate database
         run: (npm run prisma-proxy&)
+        env:
+          DATABASE_URL: postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public
 
       # - name: Migrate dev database
       #   run: npm run db-migrate
-      #   env:
-      #     DATABASE_URL: postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public
 
       - name: 🧶 Generate code
         run: npm run codegen
