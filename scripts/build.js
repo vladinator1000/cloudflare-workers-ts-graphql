@@ -1,9 +1,9 @@
 const path = require('path')
 const { build, analyzeMetafile } = require('esbuild')
 const alias = require('esbuild-plugin-alias')
+const { wrapWithQuotes } = require('./buildUtils')
 
 async function buildWorker() {
-  console.log({ env: process.env.ENVIRONMENT })
   try {
     const result = await build({
       bundle: true,
@@ -18,7 +18,7 @@ async function buildWorker() {
       outdir: path.join(__dirname, '../dist'),
       outExtension: { '.js': '.mjs' },
       define: {
-        ENVIRONMENT: process.env.ENVIRONMENT || '"development"',
+        ENVIRONMENT: wrapWithQuotes(process.env.ENVIRONMENT || 'development'),
       },
       plugins: [
         alias({
