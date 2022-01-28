@@ -47,6 +47,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: Create env file
+        run: bash ./bashScripts/createEnv.sh
+
       - name: Install dependencies
         run: npm install
 
