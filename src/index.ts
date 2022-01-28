@@ -16,8 +16,15 @@ router.prepare = preflight({
 
 router.add('GET', '/graphql', handleGraphql)
 router.add('POST', '/graphql', handleGraphql)
-router.add('GET', '/', (request) => {
-  const redirectionUrl = `${config.gqlExplorerUrl}?endpoint=${request.hostname}/graphql`
+router.add('GET', '/', (request, res) => {
+  console.log(config.environment)
+
+  const host =
+    config.environment === 'development'
+      ? `http://${request.hostname}:8787`
+      : request.hostname
+
+  const redirectionUrl = `${config.gqlExplorerUrl}?endpoint=${host}/graphql`
   return Response.redirect(redirectionUrl, 301)
 })
 

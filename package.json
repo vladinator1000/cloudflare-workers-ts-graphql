@@ -13,7 +13,8 @@
     "build-production": "ENVIRONMENT=production npm run build",
     "format": "prettier --write  '*.{json,js}' 'src/**/*.{js,ts}' 'test/**/*.{js,ts}'",
     "lint": "eslint --max-warnings=0 src && prettier --check '*.{json,js}' 'src/**/*.{js,ts}' 'test/**/*.{js,ts}'",
-    "test": "jest --config jestconfig.json --verbose",
+    "test": "jest -c jest.config.unit.js",
+    "itest": "prisma generate && jest -c jest.config.integration.js --runInBand",
     "ts": "tsc --noEmit",
     "db-migrate": "prisma migrate deploy",
     "db-reset": "prisma migrate reset --force",
@@ -39,8 +40,8 @@
     "@prisma/client": "^3.8.1",
     "graphql": "16.2.0",
     "graphql-tag": "^2.12.6",
-    "worktop": "^0.7.3",
-    "prisma-proxy-fetch-client": "^0.0.5"
+    "prisma-proxy-fetch-client": "^0.0.5",
+    "worktop": "^0.7.3"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "3.3.0",
@@ -57,6 +58,7 @@
     "@types/service-worker-mock": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
+    "dotenv": "^14.3.2",
     "esbuild": "^0.14.13",
     "esbuild-plugin-alias": "^0.2.1",
     "esbuild-plugin-node-polyfills": "^1.0.2",

@@ -18,6 +18,18 @@ A real-world worker template with a local development experience that lets you w
 docker compose up
 ```
 
+To run the unit tests (in a separate terminal)
+
+```bash
+npm test
+```
+
+To run the integration tests
+
+```bash
+npm run itest
+```
+
 ## Prerequisites for production
 
 1. Create a new repo based on the template
