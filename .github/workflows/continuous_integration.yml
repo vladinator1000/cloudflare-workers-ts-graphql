@@ -47,22 +47,25 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: Create env file
+        run: bash ./bashScripts/createEnv.sh
+
       - name: Install dependencies
         run: npm install
 
-      - name: Start Prisma proxy
-        run: docker compose up -f docker-compose.test.yml -d
-
-      - name: Migrate dev database
-        run: npm run db-migrate
+      - name: Start Prisma proxy and migrate database
+        run: (npm run prisma-proxy&)
         env:
           DATABASE_URL: postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public
 
       - name: 🧶 Generate code
-        run: npm run codegen
+        run: npm run codegen-dev-proxy
 
       - name: 🔎 Check types
         run: npm run ts
 
-      - name: 🔨 Build
-        run: npm run build
+      - name: 🔨 Unit test
+        run: npm test
+
+      - name: 🎰 Integration test
+        run: npm run itest

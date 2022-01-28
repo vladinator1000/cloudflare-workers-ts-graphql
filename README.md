@@ -15,10 +15,22 @@ A real-world worker template with a local development experience that lets you w
 1. Make sure you have [Docker](https://docs.docker.com/engine/install/) installed
 
 ```bash
-docker compose up
+./start.sh
 ```
 
-## Prerequisites for the GitHub actions to work in production
+To run the unit tests (in a separate terminal)
+
+```bash
+npm test
+```
+
+To run the integration tests
+
+```bash
+npm run itest
+```
+
+## Prerequisites for production
 
 1. Create a new repo based on the template
 1. Get a database connection string from a database service provider, or host your own. It should look something like this `postgresql://johndoe:password@host:port/mydb?schema=public`
