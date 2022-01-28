@@ -15,7 +15,7 @@ A real-world worker template with a local development experience that lets you w
 1. Make sure you have [Docker](https://docs.docker.com/engine/install/) installed
 
 ```bash
-docker compose up
+./start.sh
 ```
 
 To run the unit tests (in a separate terminal)
