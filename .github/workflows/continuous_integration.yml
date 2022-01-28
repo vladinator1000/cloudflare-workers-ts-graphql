@@ -50,13 +50,13 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Start Prisma proxy
-        run: docker compose -f docker-compose.test.yml up -d
+      - name: Start Prisma proxy and migrate database
+        run: (npm run prisma-proxy&)
 
-      - name: Migrate dev database
-        run: npm run db-migrate
-        env:
-          DATABASE_URL: postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public
+      # - name: Migrate dev database
+      #   run: npm run db-migrate
+      #   env:
+      #     DATABASE_URL: postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public
 
       - name: 🧶 Generate code
         run: npm run codegen
