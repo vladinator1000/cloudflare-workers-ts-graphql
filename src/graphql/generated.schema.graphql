@@ -21,7 +21,19 @@ type Query {
   users: [User!]!
 }
 
+type SubscriptionPlan {
+  id: Int!
+  tier: SubscriptionTier!
+}
+
+enum SubscriptionTier {
+  Bronze
+  Gold
+  Silver
+}
+
 type User {
   id: Int!
   name: String!
+  subscriptionPlan: SubscriptionPlan
 }

@@ -39,10 +39,23 @@ export type Query = {
   users: Array<User>;
 };
 
+export type SubscriptionPlan = {
+  __typename?: 'SubscriptionPlan';
+  id: Scalars['Int'];
+  tier: SubscriptionTier;
+};
+
+export enum SubscriptionTier {
+  Bronze = 'Bronze',
+  Gold = 'Gold',
+  Silver = 'Silver'
+}
+
 export type User = {
   __typename?: 'User';
   id: Scalars['Int'];
   name: Scalars['String'];
+  subscriptionPlan?: Maybe<SubscriptionPlan>;
 };
 
 
@@ -116,6 +129,8 @@ export type ResolversTypes = {
   Log: ResolverTypeWrapper<Log>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
+  SubscriptionPlan: ResolverTypeWrapper<SubscriptionPlan>;
+  SubscriptionTier: SubscriptionTier;
   User: ResolverTypeWrapper<User>;
 };
 
@@ -126,6 +141,7 @@ export type ResolversParentTypes = {
   Log: Log;
   Query: {};
   String: Scalars['String'];
+  SubscriptionPlan: SubscriptionPlan;
   User: User;
 };
 
@@ -144,15 +160,23 @@ export type QueryResolvers<ContextType = GraphqlContext, ParentType extends Reso
   users?: Resolver<Array<ResolversTypes['User']>, ParentType, ContextType>;
 };
 
+export type SubscriptionPlanResolvers<ContextType = GraphqlContext, ParentType extends ResolversParentTypes['SubscriptionPlan'] = ResolversParentTypes['SubscriptionPlan']> = {
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  tier?: Resolver<ResolversTypes['SubscriptionTier'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type UserResolvers<ContextType = GraphqlContext, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  subscriptionPlan?: Resolver<Maybe<ResolversTypes['SubscriptionPlan']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = GraphqlContext> = {
   Log?: LogResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  SubscriptionPlan?: SubscriptionPlanResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
 };
 
