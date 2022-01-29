@@ -13,7 +13,7 @@ export const userResolvers: Resolvers = {
         },
       })
 
-      return plan
+      return plan as any
     },
   },
   Query: {
