@@ -11,7 +11,7 @@ async function buildWorker() {
       platform: 'node',
       treeShaking: true,
       target: 'esnext',
-      entryPoints: [path.join(__dirname, '../src', 'prismaDevProxy.ts')],
+      entryPoints: [path.join(__dirname, '../src', 'prisma/prismaDevProxy.ts')],
       outdir: path.join(__dirname, '../dist'),
       define: {
         ENVIRONMENT: wrapWithQuotes(process.env.ENVIRONMENT || 'development'),

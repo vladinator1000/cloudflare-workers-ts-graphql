@@ -5,7 +5,8 @@
   "main": "dist/index.mjs",
   "scripts": {
     "start": "miniflare --build-command \"npm run codegen && npm run build\" --watch",
-    "prisma-proxy": "npm run db-reset && npm run codegen-dev-proxy && npm run build-prisma-proxy && node ./dist/prismaDevProxy.js",
+    "watch-proxy": "nodemon -x \"npm run prisma-proxy\" ./dist/prismaDevProxy.js",
+    "prisma-proxy": "npm run db-reset && npm run codegen-dev-proxy && npm run build-prisma-proxy",
     "codegen": "PRISMA_CLIENT_ENGINE_TYPE=dataproxy prisma generate && graphql-codegen",
     "codegen-dev-proxy": "prisma generate && graphql-codegen",
     "build": "node ./scripts/build.js",
@@ -68,6 +69,7 @@
     "express": "^4.17.2",
     "jest": "^27.0.1",
     "miniflare": "^2.2.0",
+    "nodemon": "^2.0.15",
     "prettier": "^2.3.0",
     "prisma": "^3.8.1",
     "prisma-proxy-express-server": "^0.0.5",

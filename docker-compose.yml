@@ -2,20 +2,22 @@ version: '3.9'
 services:
   db:
     image: postgres
-    environment:
-      POSTGRES_DB: mydb
-      POSTGRES_USER: johndoe
-      POSTGRES_PASSWORD: randompassword
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
       # Exposing this for external DB clients for your convenience
       - '5432:5432'
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: johndoe
+      POSTGRES_PASSWORD: randompassword
   prisma:
     build: 
       dockerfile: prismaProxy.dockerfile
     depends_on:
       - db
+    volumes:
+      - ./src:/worker/src
     ports: 
       - '3333:3333'
     environment:
@@ -24,8 +26,6 @@ services:
   worker:
     build:
       dockerfile: ./worker.dockerfile
-    environment:
-      ENVIRONMENT: development
     depends_on:
       - db
       - prisma
@@ -33,5 +33,7 @@ services:
       - ./:/worker
     ports:
       - '8787:8787'
+    environment:
+      ENVIRONMENT: development
 volumes:
   pgdata: {}

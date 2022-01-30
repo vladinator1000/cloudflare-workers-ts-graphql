@@ -1,0 +1,5 @@
+{
+  "watch": ["./src/prisma"],
+  "ignore": [".git", "node_modules"],
+  "ext": "ts,sql,prisma"
+}
