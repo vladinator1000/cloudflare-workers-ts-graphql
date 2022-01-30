@@ -12,31 +12,10 @@ model Log {
   id      Int    @id @default(autoincrement())
   level   Level
   message String
-  meta    Json
 }
 
 enum Level {
   Info
   Warn
   Error
-  Critical
-}
-
-model User {
-  id                 Int               @id @default(autoincrement())
-  name               String
-  subscriptionPlan   SubscriptionPlan? @relation(fields: [subscriptionPlanId], references: [id])
-  subscriptionPlanId Int?
-}
-
-model SubscriptionPlan {
-  id    Int              @id @default(autoincrement())
-  tier  SubscriptionTier
-  users User[]
-}
-
-enum SubscriptionTier {
-  Bronze
-  Silver
-  Gold
 }
