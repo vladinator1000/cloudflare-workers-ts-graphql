@@ -1,0 +1,30 @@
+on: workflow_dispatch
+
+jobs:
+  reset_production_database:
+    name: Reset production database
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [17.x]
+    env:
+      ENVIRONMENT: 'development'
+      NODE_ENV: 'development'
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: ⚡ Cache
+        uses: actions/cache@v2
+        with:
+          path: '~/.npm'
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Reset production database
+        run: DATABASE_URL=${{ secrets.MIGRATE_DATABASE_URL }} npx prisma migrate reset --force
