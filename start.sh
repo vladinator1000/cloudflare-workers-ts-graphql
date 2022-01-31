@@ -1,3 +1,3 @@
 #!/bin/bash
 ./bashScripts/createEnv.sh
-docker compose up
+docker compose up --build

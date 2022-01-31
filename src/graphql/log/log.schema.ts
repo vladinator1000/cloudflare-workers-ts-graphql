@@ -15,6 +15,5 @@ export const logSchema = gql`
     Info
     Warn
     Error
-    Critical
   }
 `

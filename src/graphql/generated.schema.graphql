@@ -1,5 +1,4 @@
 enum Level {
-  Critical
   Error
   Info
   Warn
@@ -18,22 +17,4 @@ type Query {
 
   """Asks Postgres what is 1 + 1"""
   testDbConnection: Int
-  users: [User!]!
-}
-
-type SubscriptionPlan {
-  id: Int!
-  tier: SubscriptionTier!
-}
-
-enum SubscriptionTier {
-  Bronze
-  Gold
-  Silver
-}
-
-type User {
-  id: Int!
-  name: String!
-  subscriptionPlan: SubscriptionPlan
 }

@@ -16,7 +16,7 @@ router.prepare = preflight({
 
 router.add('GET', '/graphql', handleGraphql)
 router.add('POST', '/graphql', handleGraphql)
-router.add('GET', '/', (request, res) => {
+router.add('GET', '/', (request) => {
   console.log(config.environment)
 
   const host =
