@@ -16,8 +16,6 @@ services:
       dockerfile: prismaProxy.dockerfile
     depends_on:
       - db
-    volumes:
-      - ./src:/worker/src
     ports: 
       - '3333:3333'
     environment:

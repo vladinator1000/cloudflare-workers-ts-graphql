@@ -1,4 +1,4 @@
-A real-world worker template with a local development experience that lets you write _big back ends_ with dignity.
+A worker template with a local development experience that lets you write _real-world_ back ends with dignity.
 
 ## Overview
 
@@ -15,7 +15,7 @@ A real-world worker template with a local development experience that lets you w
 1. Make sure you have [Docker](https://docs.docker.com/engine/install/) installed
 
 ```bash
-./start.sh
+. start.sh
 ```
 
 To run the unit tests (in a separate terminal)
@@ -29,6 +29,25 @@ To run the integration tests
 ```bash
 npm run itest
 ```
+
+## Database migrations
+
+1. Change [./src/prisma/schema.prisma](./src/prisma/schema.prisma)
+2. Create a migration (it will prompt you for a name)
+
+```sh
+npm run db-migrate-dev
+```
+
+3. Restart the worker and the Prisma proxy in a new terminal
+
+```sh
+. restart.sh
+```
+
+The Prisma proxy needs to be restarted because it generates a different database clients in the same folder as the worker. This means that if you generated both Prisma clients on the same file system at the same time, either the proxy or the worker won't work, because they both write to `node_modules/@prisma/client`.
+
+In order to avoid this conflict, the Prisma proxy lives in a Docker container with a separate file system.
 
 ## Prerequisites for production
 
