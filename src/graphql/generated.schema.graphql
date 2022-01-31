@@ -8,6 +8,7 @@ type Log {
   id: Int!
   level: Level!
   message: String!
+  note: String!
 }
 
 type Query {

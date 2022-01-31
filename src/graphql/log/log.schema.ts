@@ -9,6 +9,7 @@ export const logSchema = gql`
     id: Int!
     level: Level!
     message: String!
+    note: String!
   }
 
   enum Level {

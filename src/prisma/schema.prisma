@@ -12,6 +12,7 @@ model Log {
   id      Int    @id @default(autoincrement())
   level   Level
   message String
+  note    String @default("note")
 }
 
 enum Level {

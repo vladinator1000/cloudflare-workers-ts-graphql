@@ -6,5 +6,6 @@ export function prismaLogToGql(log: PrismaLog): Log {
     id: log.id,
     level: Level[log.level],
     message: log.message,
+    note: log.note,
   }
 }

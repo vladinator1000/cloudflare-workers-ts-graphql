@@ -26,6 +26,7 @@ export type Log = {
   id: Scalars['Int'];
   level: Level;
   message: Scalars['String'];
+  note: Scalars['String'];
 };
 
 export type Query = {
@@ -123,6 +124,7 @@ export type LogResolvers<ContextType = GraphqlContext, ParentType extends Resolv
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   level?: Resolver<ResolversTypes['Level'], ParentType, ContextType>;
   message?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  note?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
